@@ -1,0 +1,167 @@
+/* Notification Popup Styles */
+.notification-popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  animation: fadeIn 0.3s ease-out;
+}
+
+.notification-popup {
+  background: var(--gradient-card);
+  border-radius: var(--radius-xl);
+  box-shadow: 0 25px 80px var(--shadow-dark);
+  max-width: 450px;
+  width: 90%;
+  position: relative;
+  animation: slideIn 0.4s ease-out;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.close-btn {
+  position: absolute;
+  top: var(--spacing-md);
+  right: var(--spacing-md);
+  background: none;
+  border: none;
+  font-size: 1.2rem;
+  color: var(--text-secondary);
+  cursor: pointer;
+  padding: var(--spacing-sm);
+  border-radius: 50%;
+  transition: all var(--transition-fast);
+  z-index: 10;
+}
+
+.close-btn:hover {
+  background: rgba(0, 0, 0, 0.1);
+  color: var(--text-primary);
+}
+
+.popup-content {
+  padding: var(--spacing-xl);
+  text-align: center;
+}
+
+.popup-icon {
+  font-size: 3rem;
+  color: var(--secondary-color);
+  margin-bottom: var(--spacing-lg);
+  animation: bounce 0.6s ease-in-out;
+}
+
+.popup-content h3 {
+  font-size: 1.5rem;
+  color: var(--primary-color);
+  margin-bottom: var(--spacing-md);
+  font-weight: 600;
+  font-family: var(--font-heading);
+}
+
+.popup-content p {
+  color: var(--text-secondary);
+  margin-bottom: var(--spacing-xl);
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+.check-now-btn {
+  background: var(--gradient-primary);
+  color: white;
+  border: none;
+  padding: var(--spacing-md) var(--spacing-xl);
+  border-radius: var(--radius-md);
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  box-shadow: 0 4px 12px var(--shadow-medium);
+  position: relative;
+  overflow: hidden;
+}
+
+.check-now-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left var(--transition-medium);
+}
+
+.check-now-btn:hover::before {
+  left: 100%;
+}
+
+.check-now-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px var(--shadow-dark);
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-10px);
+  }
+  60% {
+    transform: translateY(-5px);
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 480px) {
+  .notification-popup {
+    width: 95%;
+    margin: var(--spacing-md);
+  }
+
+  .popup-content {
+    padding: var(--spacing-lg);
+  }
+
+  .popup-content h3 {
+    font-size: 1.3rem;
+  }
+
+  .popup-icon {
+    font-size: 2.5rem;
+  }
+
+  .check-now-btn {
+    width: 100%;
+    padding: var(--spacing-lg);
+  }
+}
