@@ -19,7 +19,7 @@ const corsOptions = {
     // Allowed origins
     const allowedOrigins = [
       'http://localhost:3000',
-      'https://lms-backend-hg.onrender.com',
+      'https://lms-by-hg.vercel.app/',
       process.env.FRONTEND_URL
     ].filter(Boolean);
 
