@@ -3,6 +3,7 @@ import { useNavigate, Link } from 'react-router-dom';
 import { AuthContext } from '../context/AuthContext';
 import { FaArrowLeft } from 'react-icons/fa';
 import './Register.css';
+import { API_URL } from "../services/api";
 
 const Register = () => {
   const [formData, setFormData] = useState({
@@ -20,6 +21,7 @@ const Register = () => {
   const [success, setSuccess] = useState('');
   const { register, verifyOTP } = useContext(AuthContext);
   const navigate = useNavigate();
+
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });

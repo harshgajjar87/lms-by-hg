@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { FaSearch } from 'react-icons/fa';
 import './Requests.css';
+import { API_URL } from "../services/api";
 
 const Requests = () => {
   const [requests, setRequests] = useState([]);

@@ -4,6 +4,7 @@ import axios from 'axios';
 import { AuthContext } from '../context/AuthContext';
 import './BookList.css';
 import { FaSearch } from 'react-icons/fa';
+import { API_URL } from "../services/api";
 
 const StudentDashboard = () => {
   const [categoriesWithBooks, setCategoriesWithBooks] = useState([]);

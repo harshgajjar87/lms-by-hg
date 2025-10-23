@@ -3,6 +3,7 @@ import { AuthContext } from '../context/AuthContext';
 import html2canvas from 'html2canvas';
 import { FaDownload } from 'react-icons/fa';
 import './ICard.css';
+import { API_URL } from "../services/api";
 
 const ICard = () => {
   const { user } = useContext(AuthContext);

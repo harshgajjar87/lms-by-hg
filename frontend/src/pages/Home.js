@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { FaBook, FaUsers, FaShieldAlt, FaRocket, FaSignInAlt, FaUserPlus } from 'react-icons/fa';
 import './Home.css';
+import { API_URL } from "../services/api";
 
 const Home = () => {
   return (

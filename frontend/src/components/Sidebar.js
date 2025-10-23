@@ -3,6 +3,7 @@ import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { AuthContext } from '../context/AuthContext';
 import { FaHome, FaBook, FaUser, FaExclamationTriangle, FaQuestionCircle, FaSignOutAlt, FaUsers, FaClipboardList, FaMoneyBillWave, FaBars, FaBookOpen, FaBell, FaTimes } from 'react-icons/fa';
 import './Sidebar.css';
+import { API_URL } from "../services/api";
 
 const Sidebar = () => {
   const { user, logout, unreadNotifications } = useContext(AuthContext);

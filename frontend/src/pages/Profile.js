@@ -3,6 +3,7 @@ import axios from 'axios';
 import { toast } from 'react-toastify';
 import { AuthContext } from '../context/AuthContext';
 import './Profile.css';
+import { API_URL } from "../services/api";
 
 const Profile = () => {
   const { user, updateUser } = useContext(AuthContext);

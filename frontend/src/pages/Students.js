@@ -3,6 +3,7 @@ import axios from 'axios';
 import StudentDetails from './StudentDetails';
 import { FaSearch } from 'react-icons/fa';
 import './Students.css';
+import { API_URL } from "../services/api";
 
 const Students = () => {
   const [students, setStudents] = useState([]);

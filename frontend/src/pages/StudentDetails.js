@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import * as XLSX from 'xlsx';
 import './StudentDetails.css';
+import { API_URL } from "../services/api";
 
 const StudentDetails = ({ studentId, onClose }) => {
   const [student, setStudent] = useState(null);

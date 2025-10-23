@@ -3,6 +3,7 @@ import { useNavigate, Link } from 'react-router-dom';
 import { AuthContext } from '../context/AuthContext';
 import { FaArrowLeft } from 'react-icons/fa';
 import './Login.css';
+import { API_URL } from "../services/api";
 
 const Login = () => {
   const [credentials, setCredentials] = useState({ identifier: '', password: '' });

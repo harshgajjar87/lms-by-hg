@@ -2,6 +2,7 @@ import React, { useContext, useState } from 'react';
 import { AuthContext } from '../context/AuthContext';
 import { useNavigate } from 'react-router-dom';
 import { FaTimes } from 'react-icons/fa';
+import { API_URL } from "../services/api";
 
 const Navbar = () => {
   const { user, logout } = useContext(AuthContext);

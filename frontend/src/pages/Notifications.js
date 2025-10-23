@@ -4,6 +4,7 @@ import { AuthContext } from '../context/AuthContext';
 import { FaBell, FaCheck, FaCheckDouble, FaExclamationTriangle, FaBook, FaUser, FaCog, FaTrash } from 'react-icons/fa';
 import { toast } from 'react-toastify';
 import './Notifications.css';
+import { API_URL } from "../services/api";
 
 // Notification sound
 const notificationSound = new Audio('/notification-sound.mp3');

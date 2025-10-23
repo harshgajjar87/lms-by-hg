@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../context/AuthContext';
 import { FaBell, FaTimes } from 'react-icons/fa';
 import './NotificationPopup.css';
+import { API_URL } from "../services/api";
 
 const NotificationPopup = () => {
   const { unreadNotifications, setShowNotificationPopup, showNotificationPopup, user } = useContext(AuthContext);
