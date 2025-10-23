@@ -100,9 +100,7 @@ Desktop.ini
 build/
 dist/
 
-# Uploads and receipts (if not needed in repo, but since they are generated, exclude)
-backend/uploads/
-backend/receipts/
+
 
 # Database files (if any)
 *.db
