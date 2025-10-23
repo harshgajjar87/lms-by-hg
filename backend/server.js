@@ -8,7 +8,7 @@ dotenv.config();
 const app = express();
 
 // ---------------------
-// ✅ CORS Middleware
+// ✅ CORS — Universal fix
 // ---------------------
 const allowedOrigins = [
   'http://localhost:3000',
@@ -20,14 +20,13 @@ app.use((req, res, next) => {
   const origin = req.headers.origin;
 
   if (origin && allowedOrigins.includes(origin)) {
-    res.setHeader('Access-Control-Allow-Origin', origin);
+    res.header('Access-Control-Allow-Origin', origin);
   }
 
-  res.setHeader('Access-Control-Allow-Credentials', 'true');
-  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
-  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+  res.header('Access-Control-Allow-Credentials', 'true');
+  res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
+  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization');
 
-  // Handle preflight requests
   if (req.method === 'OPTIONS') {
     return res.sendStatus(200);
   }
@@ -36,13 +35,13 @@ app.use((req, res, next) => {
 });
 
 // ---------------------
-// ✅ Middleware
+// ✅ Express Setup
 // ---------------------
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // ---------------------
-// ✅ MongoDB Connection
+// ✅ MongoDB
 // ---------------------
 mongoose
   .connect(process.env.MONGO_URI || 'mongodb://localhost:27017/lms', {
@@ -68,7 +67,7 @@ app.use('/receipts', express.static('receipts'));
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 // ---------------------
-// ✅ Start Server
+// ✅ Server Start
 // ---------------------
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`🚀 Server running on port ${PORT}`));
