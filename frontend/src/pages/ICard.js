@@ -53,7 +53,7 @@ const ICard = () => {
         <div className="icard-content">
           <div className="icard-photo">
             {user.profileImage ? (
-              <img src={`http://localhost:5000${user.profileImage}`} alt="Profile" crossOrigin="anonymous" />
+              <img src={`${API_URL}${user.profileImage}`} alt="Profile" crossOrigin="anonymous" />
             ) : (
               <div className="default-photo">No Photo</div>
             )}

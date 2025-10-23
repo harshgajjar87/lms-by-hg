@@ -14,7 +14,7 @@ const StudentDetails = ({ studentId, onClose }) => {
 
   const fetchStudentDetails = async () => {
     try {
-      const res = await axios.get(`http://localhost:5000/api/admin/students/${studentId}`);
+      const res = await axios.get(`${API_URL}/api/admin/students/${studentId}`);
       setStudent(res.data.student);
       setRequests(res.data.requests);
     } catch (err) {
@@ -50,7 +50,7 @@ const StudentDetails = ({ studentId, onClose }) => {
         <button className="close-btn" onClick={onClose}>×</button>
         <h2>Student Details</h2>
         <div className="student-info">
-          <img src={student.profileImage ? `http://localhost:5000${student.profileImage}` : '/default-avtar.png'} alt={student.name} />
+          <img src={student.profileImage ? `${API_URL}${student.profileImage}` : '/default-avtar.png'} alt={student.name} />
           <div>
             <p><strong>Name:</strong> {student.name}</p>
             <p><strong>Enrollment No:</strong> {student.enrollmentNo}</p>

@@ -14,7 +14,7 @@ const Penalties = () => {
 
   const fetchPenalties = async () => {
     try {
-      const res = await axios.get('http://localhost:5000/api/requests/penalties', {
+      const res = await axios.get(`${API_URL}/api/requests/penalties`, {
         headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
       });
       setPenalties(res.data);
@@ -50,7 +50,7 @@ const Penalties = () => {
                 <td>{new Date(penalty.date).toLocaleDateString()}</td>
                 <td>
                   {penalty.paid && penalty.receipt && (
-                    <a href={`http://localhost:5000${penalty.receipt}`} target="_blank" rel="noopener noreferrer" className="btn btn-secondary">Download Receipt</a>
+                    <a href={`${API_URL}${penalty.receipt}`} target="_blank" rel="noopener noreferrer" className="btn btn-secondary">Download Receipt</a>
                   )}
                 </td>
               </tr>

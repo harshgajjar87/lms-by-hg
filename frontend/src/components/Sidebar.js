@@ -69,7 +69,7 @@ const Sidebar = () => {
       <nav className={`sidebar ${isOpen ? 'open' : ''}`}>
         <div className="sidebar-header">
           {user.profileImage && (
-            <img src={`http://localhost:5000${user.profileImage}`} alt="Profile" className="sidebar-profile-image" />
+            <img src={`${API_URL}${user.profileImage}`} alt="Profile" className="sidebar-profile-image" />
           )}
           <h2>Welcome, {user.name}</h2>
           <p>{user.role === 'admin' ? 'Administrator' : 'Student'}</p>

@@ -33,7 +33,7 @@ const Students = () => {
 
   const fetchStudents = async () => {
     try {
-      const res = await axios.get('http://localhost:5000/api/admin/students');
+      const res = await axios.get(`${API_URL}/api/admin/students`);
       setStudents(res.data);
     } catch (err) {
       console.error(err);
@@ -74,7 +74,7 @@ const Students = () => {
             {(searchTerm ? filteredStudents : students).map(student => (
               <tr key={student._id}>
                 <td>
-                  <img src={student.profileImage ? `http://localhost:5000${student.profileImage}` : '/default-avtar.png'} alt={student.name} />
+                  <img src={student.profileImage ? `${API_URL}${student.profileImage}` : '/default-avtar.png'} alt={student.name} />
                 </td>
                 <td>{student.name}</td>
                 <td>{student.enrollmentNo}</td>

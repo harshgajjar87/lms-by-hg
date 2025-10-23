@@ -50,7 +50,7 @@ const Profile = () => {
     if (image) data.append('profileImage', image);
 
     try {
-      const res = await axios.put('http://localhost:5000/api/auth/profile', data, {
+      const res = await axios.put(`${API_URL}/api/auth/profile`, data, {
         headers: { 'Content-Type': 'multipart/form-data' },
       });
       toast.success('Profile updated successfully!');
@@ -72,7 +72,7 @@ const Profile = () => {
     }
 
     try {
-      const res = await axios.post('http://localhost:5000/api/auth/update-email-otp', {
+      const res = await axios.post(`${API_URL}/api/auth/update-email-otp`, {
         newEmail: emailUpdate.newEmail
       }, {
         headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
@@ -91,7 +91,7 @@ const Profile = () => {
     }
 
     try {
-      const res = await axios.post('http://localhost:5000/api/auth/verify-email-update', {
+      const res = await axios.post(`${API_URL}/api/auth/verify-email-update`, {
         otp: emailUpdate.otp
       }, {
         headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
@@ -114,7 +114,7 @@ const Profile = () => {
           <label>Profile Image:</label>
           <input type="file" onChange={handleImageChange} accept="image/*" />
           <div className="profile-image-preview">
-            <img src={user.profileImage ? `http://localhost:5000${user.profileImage}` : '/default-avtar.png'} alt="Profile" />
+            <img src={user.profileImage ? `${API_URL}${user.profileImage}` : '/default-avtar.png'} alt="Profile" />
           </div>
         </div>
         <div className="form-group">

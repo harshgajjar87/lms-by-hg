@@ -11,7 +11,7 @@ const AdminPenalties = () => {
 
   const fetchPenalties = async () => {
     try {
-      const res = await axios.get('http://localhost:5000/api/admin/penalties');
+      const res = await axios.get(`${API_URL}/api/admin/penalties`);
       setPenalties(res.data);
     } catch (err) {
       console.error(err);
@@ -20,7 +20,7 @@ const AdminPenalties = () => {
 
   const handlePay = async (penaltyId) => {
     try {
-      await axios.put(`http://localhost:5000/api/admin/penalties/${penaltyId}/pay`);
+      await axios.put(`${API_URL}/api/admin/penalties/${penaltyId}/pay`);
       fetchPenalties();
     } catch (err) {
       alert(err.response?.data?.message || 'Payment failed');
@@ -59,7 +59,7 @@ const AdminPenalties = () => {
                     <button className="btn btn-success" onClick={() => handlePay(penalty._id)}>Mark as Paid</button>
                   )}
                   {penalty.paid && penalty.receipt && (
-                    <a href={`http://localhost:5000${penalty.receipt}`} target="_blank" rel="noopener noreferrer" className="btn btn-secondary">Download Receipt</a>
+                    <a href={`${API_URL}${penalty.receipt}`} target="_blank" rel="noopener noreferrer" className="btn btn-secondary">Download Receipt</a>
                   )}
                 </td>
               </tr>

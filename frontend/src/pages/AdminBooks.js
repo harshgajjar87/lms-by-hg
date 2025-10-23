@@ -29,7 +29,7 @@ const AdminBooks = () => {
 
   const fetchBooks = async () => {
     try {
-      const res = await axios.get('http://localhost:5000/api/books');
+      const res = await axios.get(`${API_URL}/api/books`);
       setBooks(res.data);
     } catch (err) {
       console.error('Error fetching books:', err);
@@ -60,7 +60,7 @@ const AdminBooks = () => {
       });
 
       if (editingBook) {
-        await axios.put(`http://localhost:5000/api/books/${editingBook._id}`, data, {
+        await axios.put(`${API_URL}/api/books/${editingBook._id}`, data, {
           headers: {
             Authorization: `Bearer ${localStorage.getItem('token')}`,
             'Content-Type': 'multipart/form-data'
@@ -68,7 +68,7 @@ const AdminBooks = () => {
         });
         toast.success('Book updated successfully!');
       } else {
-        await axios.post('http://localhost:5000/api/books', data, {
+        await axios.post(`${API_URL}/api/books`, data, {
           headers: {
             Authorization: `Bearer ${localStorage.getItem('token')}`,
             'Content-Type': 'multipart/form-data'
@@ -114,7 +114,7 @@ const AdminBooks = () => {
   const handleDelete = async (id) => {
     if (window.confirm('Are you sure you want to delete this book?')) {
       try {
-        await axios.delete(`http://localhost:5000/api/books/${id}`, {
+        await axios.delete(`${API_URL}/api/books/${id}`, {
           headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
         });
         toast.success('Book deleted successfully!');
@@ -219,7 +219,7 @@ const AdminBooks = () => {
                 <input type="file" name="image" accept="image/*" onChange={handleInputChange} />
                 {editingBook && formData.image && typeof formData.image === 'string' && (
                   <div style={{ marginTop: '10px' }}>
-                    <img src={`http://localhost:5000${formData.image}`} alt="Current book" style={{ maxWidth: '100px', maxHeight: '100px' }} />
+                    <img src={`${API_URL}${formData.image}`} alt="Current book" style={{ maxWidth: '100px', maxHeight: '100px' }} />
                   </div>
                 )}
               </div>

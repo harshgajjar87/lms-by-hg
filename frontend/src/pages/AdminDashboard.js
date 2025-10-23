@@ -34,7 +34,7 @@ const AdminDashboard = () => {
 
   const fetchCategoriesWithBooks = async () => {
     try {
-      const res = await axios.get('http://localhost:5000/api/books/categories/books');
+      const res = await axios.get(`${API_URL}/api/books/categories/books`);
       setCategoriesWithBooks(res.data);
     } catch (err) {
       console.error(err);
@@ -46,7 +46,7 @@ const AdminDashboard = () => {
       <header>
         <div className="header-content">
           {user?.profileImage && (
-            <img src={`http://localhost:5000${user.profileImage}`} alt="Profile" className="header-profile-image" />
+            <img src={`${API_URL}${user.profileImage}`} alt="Profile" className="header-profile-image" />
           )}
           <h1>Welcome, {user?.name}</h1>
         </div>
@@ -75,7 +75,7 @@ const AdminDashboard = () => {
             <div className="books-horizontal">
               {books.map(book => (
                 <div key={book._id} className="book-card">
-                  <img src={book.image ? `http://localhost:5000${book.image}` : '/default-book.png'} alt={book.title} />
+                  <img src={book.image ? `${API_URL}${book.image}` : '/default-book.png'} alt={book.title} />
                   <h4>Title: {book.title}</h4>
                   <p>Author Name: {book.author}</p>
                   <p>Publication: {book.publication}</p>

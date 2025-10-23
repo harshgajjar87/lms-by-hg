@@ -18,7 +18,7 @@ export const AuthProvider = ({ children }) => {
     if (token) {
       axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
       // Verify token and get user data
-      axios.get('http://localhost:5000/api/auth/profile')
+      axios.get(`${API_URL}/api/auth/profile`)
         .then(res => setUser(res.data))
         .catch(() => localStorage.removeItem('token'))
         .finally(() => setLoading(false));
@@ -29,7 +29,7 @@ export const AuthProvider = ({ children }) => {
 
   const login = async (credentials) => {
     try {
-      const res = await axios.post('http://localhost:5000/api/auth/login', credentials);
+      const res = await axios.post(`${API_URL}/api/auth/login`, credentials);
       const { token, user } = res.data;
       localStorage.setItem('token', token);
       axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
@@ -37,7 +37,7 @@ export const AuthProvider = ({ children }) => {
       toast.success('Login successful!');
 
       // Fetch unread notifications count for navbar badge
-      const notificationRes = await axios.get('http://localhost:5000/api/notifications/unread-count');
+      const notificationRes = await axios.get(`${API_URL}/api/notifications/unread-count`);
       const unreadCount = notificationRes.data.count;
       setUnreadNotifications(unreadCount);
 
@@ -57,7 +57,7 @@ export const AuthProvider = ({ children }) => {
 
   const register = async (userData) => {
     try {
-      const res = await axios.post('http://localhost:5000/api/auth/register', userData);
+      const res = await axios.post(`${API_URL}/api/auth/register`, userData);
       toast.success('OTP sent successfully! Check your email.');
       return res.data;
     } catch (error) {
@@ -68,7 +68,7 @@ export const AuthProvider = ({ children }) => {
 
   const verifyOTP = async (email, otp) => {
     try {
-      const res = await axios.post('http://localhost:5000/api/auth/verify-otp', { email, otp });
+      const res = await axios.post(`${API_URL}/api/auth/verify-otp`, { email, otp });
       toast.success('Account verified successfully!');
       return res.data;
     } catch (error) {
@@ -85,11 +85,11 @@ export const AuthProvider = ({ children }) => {
     if (user) {
       try {
         // Get unread notifications to check for new ones
-        const unreadRes = await axios.get('http://localhost:5000/api/notifications/unread');
+        const unreadRes = await axios.get(`${API_URL}/api/notifications/unread`);
         const unreadNotificationsList = unreadRes.data;
 
         // Get count
-        const countRes = await axios.get('http://localhost:5000/api/notifications/unread-count');
+        const countRes = await axios.get(`${API_URL}/api/notifications/unread-count`);
         const newCount = countRes.data.count;
 
         // Check if there are new unread notifications that haven't been played yet

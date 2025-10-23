@@ -29,7 +29,7 @@ const Requests = () => {
 
   const fetchRequests = async () => {
     try {
-      const res = await axios.get('http://localhost:5000/api/admin/requests', {
+      const res = await axios.get(`${API_URL}/api/admin/requests`, {
         headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
       });
       setRequests(res.data);
@@ -40,7 +40,7 @@ const Requests = () => {
 
   const handleApprove = async (requestId) => {
     try {
-      await axios.put(`http://localhost:5000/api/admin/requests/${requestId}/approve`, {}, {
+      await axios.put(`${API_URL}/api/admin/requests/${requestId}/approve`, {}, {
         headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
       });
       fetchRequests();
@@ -51,7 +51,7 @@ const Requests = () => {
 
   const handleDeny = async (requestId) => {
     try {
-      await axios.put(`http://localhost:5000/api/admin/requests/${requestId}/deny`, {}, {
+      await axios.put(`${API_URL}/api/admin/requests/${requestId}/deny`, {}, {
         headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
       });
       fetchRequests();
@@ -62,7 +62,7 @@ const Requests = () => {
 
   const handleCollect = async (requestId) => {
     try {
-      await axios.put(`http://localhost:5000/api/admin/requests/${requestId}/collect`, {}, {
+      await axios.put(`${API_URL}/api/admin/requests/${requestId}/collect`, {}, {
         headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
       });
       fetchRequests();
@@ -73,7 +73,7 @@ const Requests = () => {
 
   const handleReceive = async (requestId) => {
     try {
-      await axios.put(`http://localhost:5000/api/admin/requests/${requestId}/receive`, {}, {
+      await axios.put(`${API_URL}/api/admin/requests/${requestId}/receive`, {}, {
         headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
       });
       fetchRequests();

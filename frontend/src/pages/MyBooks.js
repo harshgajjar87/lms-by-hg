@@ -13,7 +13,7 @@ const MyBooks = () => {
 
   const fetchMyRequests = async () => {
     try {
-      const res = await axios.get('http://localhost:5000/api/requests/my', {
+      const res = await axios.get(`${API_URL}/api/requests/my`, {
         headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
       });
       setRequests(res.data);

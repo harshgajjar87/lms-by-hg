@@ -15,7 +15,7 @@ const BookList = () => {
   useEffect(() => {
     const fetchBooks = async () => {
       try {
-        const res = await axios.get(`http://localhost:5000/api/books/category/${category}`);
+        const res = await axios.get(`${API_URL}/api/books/category/${category}`);
         setBooks(res.data);
       } catch (err) {
         console.error(err);
@@ -30,7 +30,7 @@ const BookList = () => {
       <div className="books">
         {books.map(book => (
           <div key={book._id} className="book-card">
-            <img src={book.image ? `http://localhost:5000${book.image}` : '/default-book.png'} alt={book.title} />
+            <img src={book.image ? `${API_URL}${book.image}` : '/default-book.png'} alt={book.title} />
             <h3>{book.title}</h3>
             <p>{book.author}</p>
             <p>{book.publication}</p>

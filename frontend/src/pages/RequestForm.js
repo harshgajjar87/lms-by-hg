@@ -17,7 +17,7 @@ const RequestForm = () => {
   useEffect(() => {
     const fetchBook = async () => {
       try {
-        const res = await axios.get(`http://localhost:5000/api/books/${bookId}`);
+        const res = await axios.get(`${API_URL}/api/books/${bookId}`);
         setBook(res.data);
       } catch (err) {
         console.error(err);
@@ -33,7 +33,7 @@ const RequestForm = () => {
       return;
     }
     try {
-      await axios.post('http://localhost:5000/api/requests', { bookId }, {
+      await axios.post(`${API_URL}/api/requests`, { bookId }, {
         headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
       });
       toast.success('Request submitted successfully!');
