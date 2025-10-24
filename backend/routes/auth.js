@@ -15,6 +15,7 @@ const transporter = nodemailer.createTransport({
     user: process.env.EMAIL_USER,
     pass: process.env.EMAIL_PASS,
   },
+  timeout: 10000, // 10 seconds timeout to prevent hanging
 });
 
 // Generate OTP
@@ -26,8 +27,8 @@ const sendOTPEmail = async (email, otp) => {
     const mailOptions = {
       from: process.env.EMAIL_USER,
       to: email,
-      subject: 'OTP for Registration',
-      text: `Your OTP is: ${otp}`,
+      subject: 'OTP for Password Reset',
+      text: `Your OTP for password reset is: ${otp}. This OTP will expire in 10 minutes.`,
     };
     await transporter.sendMail(mailOptions);
   } catch (error) {
