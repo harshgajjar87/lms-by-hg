@@ -45,9 +45,6 @@ const AdminDashboard = () => {
     <div className="dashboard">
       <header>
         <div className="header-content">
-          {user?.profileImage && (
-            <img src={`${API_URL}${user.profileImage}`} alt="Profile" className="header-profile-image" />
-          )}
           <h1>Welcome, {user?.name}</h1>
         </div>
         <div className="search-container">
