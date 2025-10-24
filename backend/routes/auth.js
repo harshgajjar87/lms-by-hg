@@ -9,13 +9,16 @@ const jwt = require('jsonwebtoken');
 const router = express.Router();
 
 // Configure nodemailer
+// AFTER (The Fix)
 const transporter = nodemailer.createTransport({
-  service: 'gmail',
+  host: 'smtp.gmail.com', // Google's SMTP server
+  port: 587, // Port for TLS
+  secure: false, // Use TLS (true for 465, false for other ports like 587)
   auth: {
     user: process.env.EMAIL_USER,
     pass: process.env.EMAIL_PASS,
   },
-  timeout: 10000, // 10 seconds timeout to prevent hanging
+  timeout: 10000,
 });
 
 // Generate OTP
