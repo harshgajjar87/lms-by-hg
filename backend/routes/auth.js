@@ -1,41 +1,40 @@
 const express = require('express');
 const User = require('../models/User');
 const { auth } = require('../middleware/auth');
-const nodemailer = require('nodemailer');
+const sgMail = require('@sendgrid/mail');
 const upload = require('../middleware/upload');
 
 const jwt = require('jsonwebtoken');
 
 const router = express.Router();
 
-// Configure nodemailer
-// AFTER (The Fix)
-const transporter = nodemailer.createTransport({
-  host: 'smtp.gmail.com', // Google's SMTP server
-  port: 587, // Port for TLS
-  secure: false, // Use TLS (true for 465, false for other ports like 587)
-  auth: {
-    user: process.env.EMAIL_USER,
-    pass: process.env.EMAIL_PASS,
-  },
-  timeout: 10000,
-});
+// Configure SendGrid
+sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 
 // Generate OTP
 const generateOTP = () => Math.floor(100000 + Math.random() * 900000).toString();
 
 // Send OTP email
+// Send OTP email using SendGrid
 const sendOTPEmail = async (email, otp) => {
+  const msg = {
+    to: email, // The recipient's email
+    from: process.env.EMAIL_USER, // Your VERIFIED SendGrid sender email
+    subject: 'OTP for Password Reset',
+    text: `Your OTP for password reset is: ${otp}. This OTP will expire in 10 minutes.`,
+  };
+
   try {
-    const mailOptions = {
-      from: process.env.EMAIL_USER,
-      to: email,
-      subject: 'OTP for Password Reset',
-      text: `Your OTP for password reset is: ${otp}. This OTP will expire in 10 minutes.`,
-    };
-    await transporter.sendMail(mailOptions);
+    await sgMail.send(msg);
+    console.log(`OTP email sent successfully to ${email}`);
   } catch (error) {
     console.error('Error sending OTP email:', error);
+
+    // This gives you more detailed errors from SendGrid
+    if (error.response) {
+      console.error(error.response.body)
+    }
+
     throw new Error('Failed to send OTP email');
   }
 };
